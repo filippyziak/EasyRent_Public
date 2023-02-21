@@ -1,0 +1,129 @@
+<ng-container
+  *ngFor="let index of reservations; let i = index; let even = even"
+>
+  <span class="row col-8 offset-2" *ngIf="even">
+    <div class="border col-5 border-1 border-primary m-2 p-2 hover">
+      <div class="col-12">
+        <div class="row space"></div>
+        <div class="row d-flex">
+          <h3 class="col-3">Arrival Date</h3>
+          <h3 class="col-3">Departure Date</h3>
+          <h3 class="col-3">Status</h3>
+          <h3
+            class="col-3 text-decoration-underline"
+            [routerLink]="['/rentalAd/', reservations[i].rentalAdId]"
+          >
+            Go to!
+          </h3>
+        </div>
+        <div class="row d-flex">
+          <h3 class="col-3">{{ toDate(reservations[i].arrivalDate) }}</h3>
+          <h3 class="col-3">{{ toDate(reservations[i].departureDate) }}</h3>
+          <h3 class="col-3">{{ reservations[i].state }}</h3>
+          <form
+            #postForm="ngForm"
+            *ngIf="isFinished(reservations[i])"
+            (ngSubmit)="
+              review(
+                postForm.value.description,
+                postForm.value.reviewScore,
+                reservations[i].placeReservationId,
+                reservations[i].rentalAdId,
+                reservations[i]
+              )
+            "
+          >
+            <textarea
+              class="col-sm-10 offset-sm-1"
+              ngModel
+              type="text"
+              placeholder="Description"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              name="description"
+            ></textarea>
+            <label class="col-6 offset-2 mt-2">Review Score:</label>
+            <sm-input-container class="col-2">
+              <input
+                mdInput
+                ngModel
+                name="reviewScore"
+                type="number"
+                id="myNumber"
+                max="5"
+                min="1"
+              />
+            </sm-input-container>
+            <button class="btn btn-primary offset-4 col-4 my-2" type="submit">
+              Review!
+            </button>
+          </form>
+        </div>
+        <button *ngIf="isOnGoing(reservations[i])" class="col-10 offset-1 my-1 btn btn-danger" (click)="cancelReservation(reservations[i].placeReservationId, i)">Cancel</button>
+      </div>
+    </div>
+    <div
+      *ngIf="i - reservations.length < -1"
+      class="border col-5 border-1 border-primary m-2 p-2 hover"
+    >
+      <div class="col-12">
+        <div class="row space"></div>
+        <div class="row d-flex">
+          <h3 class="col-3">Arrival Date</h3>
+          <h3 class="col-3">Departure Date</h3>
+          <h3 class="col-3">Status</h3>
+          <h3
+            class="col-3 text-decoration-underline"
+            [routerLink]="['/rentalAd/', reservations[i + 1].rentalAdId]"
+          >
+            Go to!
+          </h3>
+        </div>
+        <div class="row d-flex">
+          <h3 class="col-3">{{ toDate(reservations[i + 1].arrivalDate) }}</h3>
+          <h3 class="col-3">{{ toDate(reservations[i + 1].departureDate) }}</h3>
+          <h3 class="col-3">{{ reservations[i + 1].state }}</h3>
+          <form
+            #postForm="ngForm"
+            *ngIf="isFinished(reservations[i + 1])"
+            (ngSubmit)="
+              review(
+                postForm.value.description,
+                postForm.value.reviewScore,
+                reservations[i + 1].placeReservationId,
+                reservations[i + 1].rentalAdId,
+                reservations[i + 1]
+              )
+            "
+          >
+            <textarea
+              class="col-sm-10 offset-sm-1"
+              ngModel
+              type="text"
+              placeholder="Description"
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              name="description"
+            ></textarea>
+            <label class="col-6 offset-2 mt-2">Review Score:</label>
+            <sm-input-container class="col-2">
+              <input
+                mdInput
+                ngModel
+                name="reviewScore"
+                type="number"
+                id="myNumber"
+                max="5"
+                min="1"
+              />
+            </sm-input-container>
+            <button class="offset-4 col-4 btn btn-primary" type="submit">
+              Review!
+            </button>
+          </form>
+        </div>
+        <button *ngIf="isOnGoing(reservations[i+1])" class="col-10 offset-1 my-1 btn btn-danger" (click)="cancelReservation(reservations[i + 1].placeReservationId, i + 1)">Cancel</button>
+      </div>
+    </div>
+  </span>
+</ng-container>

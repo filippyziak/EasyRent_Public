@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.CQRS\EasyRent.CQRS.csproj" />
+      <ProjectReference Include="..\EasyRent.Reservation.Domain\EasyRent.Reservation.Domain.csproj" />
+      <ProjectReference Include="..\EasyRent.Reservation.ReadModels\EasyRent.Reservation.ReadModels.csproj" />
+    </ItemGroup>
+
+</Project>

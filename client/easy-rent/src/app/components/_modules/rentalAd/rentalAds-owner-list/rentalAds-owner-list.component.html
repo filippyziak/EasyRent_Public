@@ -1,0 +1,39 @@
+<div class="row col-10 offset-1">
+  <div *ngFor="let rentalAd of rentalAds">
+    <div class="border border-1 border-primary m-2 p-2">
+      <div class="row">
+        <div class="col-3">
+
+          <div class="avatar-container" *ngIf="rentalAd?.mainPlacePicture?.pictureUrl" [ngStyle]="{
+            'background-image': 'url('+ rentalAd?.mainPlacePicture?.pictureUrl +')'
+          }">
+          </div>
+          <img class="avatar-container" *ngIf="!rentalAd?.mainPlacePicture?.pictureUrl" src="../assets/resources/placeholder.png">
+        </div>
+        <div class="col-9">
+          <div class="row">
+            <h1 class="text-wrap mt-2 col-12">{{rentalAd.title}}</h1>
+          </div>
+          <div class="row space"></div>
+          <div class="row space"></div>
+          <div class="row d-flex">
+            <h3 class="col-2">Price</h3>
+            <button class="btn btn-primary rounded col-2 my-2" *ngIf="rentalAd?.state !== 'Archived'" (click)="router.navigate(['rentalAd/edit/', rentalAd.rentalAdId])">Edit</button>
+            <button class="btn btn-danger rounded col-2 my-2" *ngIf="rentalAd?.state !== 'Archived'" (click)="deleteRentalAd(rentalAd.rentalAdId)" type="button">Delete</button>
+            <div class="col-4 my-2" *ngIf="rentalAd?.state === 'Archived'"></div>
+            <h3 class="col-2">Country</h3>
+            <h3 class="col-2">City</h3>
+            <h3 class="col-2">Street</h3>
+          </div>
+          <div class="row d-flex">
+            <h3 class="col-2 text-wrap">{{rentalAd.pricePerDay}} $</h3>
+            <button class="btn btn-primary rounded col-2 h-50" (click)="router.navigate(['rentalAd/', rentalAd.rentalAdId])">Show</button>
+            <h3 class="col-2"></h3>
+            <h3 class="col-2 text-wrap">{{rentalAd.placeAddress.country}}</h3>
+            <h3 class="col-2 text-wrap">{{rentalAd.placeAddress.city}}</h3>
+            <h3 class="col-2 text-wrap">{{rentalAd.placeAddress.street}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

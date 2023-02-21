@@ -1,0 +1,6 @@
+﻿{
+  "ManagementDocumentConfiguration": {
+    "ConnectionString": "mongodb://admin:admin1234@database.mongodb.management:27017",
+    "DatabaseName": "Management"
+  }
+}

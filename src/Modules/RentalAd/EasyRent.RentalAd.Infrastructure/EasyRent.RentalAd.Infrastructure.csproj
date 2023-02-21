@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.EventSourcing\EasyRent.EventSourcing.csproj" />
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.Infrastructure\EasyRent.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.MessageBroker.RabbitMq\EasyRent.MessageBroker.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\Identity\EasyRent.Identity.Integrations\EasyRent.Identity.Integrations.csproj" />
+      <ProjectReference Include="..\..\Identity\EasyRent.Identity.Shared\EasyRent.Identity.Shared.csproj" />
+      <ProjectReference Include="..\..\Management\EasyRent.Management.Shared\EasyRent.Management.Shared.csproj" />
+      <ProjectReference Include="..\..\Reservation\EasyRent.Reservation.Integrations\EasyRent.Reservation.Integrations.csproj" />
+      <ProjectReference Include="..\EasyRent.RentalAd.Core\EasyRent.RentalAd.Core.csproj" />
+      <ProjectReference Include="..\EasyRent.RentalAd.Shared\EasyRent.RentalAd.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

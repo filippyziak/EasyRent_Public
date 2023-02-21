@@ -1,0 +1,42 @@
+<div class="container my-5 py-5">
+  <div class="row col">
+    <div class="row col-md-4 offset-md-4 justify-content-center">
+      <form #registerForm="ngForm" (ngSubmit)="register(registerForm.value.login, registerForm.value.password, registerForm.value.selected)">
+        <div>
+          <label class="col-sm-10 offset-sm-1"> Email Address:</label>
+          <input class="col-sm-10 offset-sm-1" ngModel type="text" name="login" email required #login="ngModel"
+            [ngClass]="{ 'is-invalid': registerForm.submitted && login.invalid }"/>
+            <div class="invalid-feedback col-sm-10 offset-sm-1" *ngIf="registerForm.submitted && login.invalid">
+              <p *ngIf="login.errors.required">Email is required</p>
+            </div>
+            <div class="invalid-feedback col-sm-10 offset-sm-1" *ngIf="registerForm.submitted && login.invalid">
+              <p *ngIf="login.errors.email">Must be email address</p>
+            </div>
+          </div>
+        <div>
+          <label class="col-sm-10 offset-sm-1"> Password:</label>
+          <input class="col-sm-10 offset-sm-1" ngModel type="password" name="password" required #password="ngModel"
+          [ngClass]="{ 'is-invalid': registerForm.submitted && password.invalid }"/>
+          <div class="invalid-feedback col-sm-10 offset-sm-1" *ngIf="registerForm.submitted && password.invalid">
+            <p *ngIf="password.errors.required">Password is required</p>
+          </div>
+        </div>
+        <div>
+          <label class="col-sm-5 offset-sm-2 my-2">Select account type:</label>
+          <select [(ngModel)]="type.id" name="selected">
+            <option *ngFor="let t of types" [ngValue]="t.id">{{t.name}}</option>
+          </select>
+        </div>
+        <button
+          class="col-sm-6 offset-sm-3 btn btn-primary"
+          type="submit"
+        >
+          Create Account!
+        </button>
+      </form>
+      <a class="text-dark text-center my-2 custom-p" [routerLink]="['/login']"
+        >Login</a
+      >
+    </div>
+  </div>
+</div>

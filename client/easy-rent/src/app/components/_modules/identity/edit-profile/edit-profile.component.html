@@ -1,0 +1,16 @@
+<div class="container my-5 py-5">
+  <div class="row col">
+    <div class="row col-8 offset-2 justify-content-center">
+      <form #updateEmailForm="ngForm" class="my-2" (ngSubmit)="updateEmail(updateEmailForm.value.email)">
+          <label class="col-4"> New Email Address:</label>
+          <input class="col-4" type="text" placeholder="email address" ngModel name="email"/>
+          <button class="col-2 offset-1 btn btn-sm btn-primary" type="submit">Update Email</button>
+      </form> 
+      <form #updatePasswordForm="ngForm" class="my-2" (ngSubmit)="updatePassword(updatePasswordForm.value.password)">
+          <label class="col-4"> New Password:</label>
+          <input class="col-4" type="password" placeholder="password" ngModel name="password"/>
+          <button class="col-2 offset-1 btn btn-sm btn-primary" type="submit">Update Password</button>
+      </form>
+    </div>
+  </div>
+</div>

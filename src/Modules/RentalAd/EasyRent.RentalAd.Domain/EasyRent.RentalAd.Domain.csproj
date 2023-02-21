@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.EventSourcing\EasyRent.EventSourcing.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.Shared\EasyRent.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

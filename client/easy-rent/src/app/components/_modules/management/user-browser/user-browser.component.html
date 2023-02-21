@@ -1,0 +1,29 @@
+<ng-container>
+  <div *ngFor="let index of accounts; let i = index; let even = even">
+    <span class="row col-10 offset-1" *ngIf="even">
+      <div class="border col-5 border-1 border-primary m-2 p-2 hover">
+        <div class="row space"></div>
+        <div class="row col-10 offset-1">
+          <h3>{{ accounts[i].emailAddress }}</h3>
+        </div>
+        <div class="row">
+          <button *ngIf="isActive(accounts[i].state)" (click)="suspend(accounts[i])" class="btn btn-primary offset-1 col-6 my-2">Suspend</button>
+          <button *ngIf="!isActive(accounts[i].state)" (click)="activate(accounts[i])" class="btn btn-success offset-1 col-6 my-2">Activate</button>
+        </div>
+      </div>
+      <div
+        *ngIf="i - accounts.length < -1"
+        class="border col-5 border-1 border-primary m-2 p-2 hover"
+      >
+      <div class="row space"></div>
+      <div class="row col-10 offset-1">
+        <h3>{{ accounts[i+1].emailAddress }}</h3>
+      </div>
+      <div class="row">
+        <button *ngIf="isActive(accounts[i+1].state)" (click)="suspend(accounts[i + 1])" class="btn btn-primary offset-1 col-6 my-2">Suspend</button>
+        <button *ngIf="!isActive(accounts[i+1].state)" (click)="activate(accounts[i + 1])" class="btn btn-success offset-1 col-6 my-2">Activate</button>
+      </div>
+      </div>
+    </span>
+  </div>
+</ng-container>

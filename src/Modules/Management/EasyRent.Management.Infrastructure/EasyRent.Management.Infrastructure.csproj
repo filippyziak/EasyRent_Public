@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.Infrastructure\EasyRent.Infrastructure.csproj" />
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.MessageBroker.RabbitMq\EasyRent.MessageBroker.RabbitMq.csproj" />
+      <ProjectReference Include="..\..\Identity\EasyRent.Identity.Integrations\EasyRent.Identity.Integrations.csproj" />
+      <ProjectReference Include="..\EasyRent.Management.Core\EasyRent.Management.Core.csproj" />
+      <ProjectReference Include="..\EasyRent.Management.Shared\EasyRent.Management.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

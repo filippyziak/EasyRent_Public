@@ -1,0 +1,6 @@
+﻿{
+  "PlaceReservationDocumentConfiguration": {
+    "ConnectionString": "mongodb://admin:admin1234@database.mongodb.reservation:27017",
+    "DatabaseName": "Reservation"
+  }
+}

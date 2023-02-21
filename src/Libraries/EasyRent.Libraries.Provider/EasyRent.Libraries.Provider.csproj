@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EasyRent.DependencyInjection\EasyRent.DependencyInjection.csproj" />
+      <ProjectReference Include="..\EasyRent.EventSourcing.EventStore\EasyRent.EventSourcing.EventStore.csproj" />
+      <ProjectReference Include="..\EasyRent.Infrastructure\EasyRent.Infrastructure.csproj" />
+      <ProjectReference Include="..\EasyRent.NetCore\EasyRent.NetCore.csproj" />
+    </ItemGroup>
+
+</Project>

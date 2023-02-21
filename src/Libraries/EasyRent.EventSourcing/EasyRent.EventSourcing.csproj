@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EasyRent.DependencyInjection\EasyRent.DependencyInjection.csproj" />
+      <ProjectReference Include="..\EasyRent.Infrastructure.Abstractions\EasyRent.Infrastructure.Abstractions.csproj" />
+      <ProjectReference Include="..\EasyRent.Shared\EasyRent.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+      <PackageReference Include="NLog" Version="5.0.5" />
+    </ItemGroup>
+
+</Project>

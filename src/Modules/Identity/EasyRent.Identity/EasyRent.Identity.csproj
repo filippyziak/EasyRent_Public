@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="12.0.0" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.Configuration\EasyRent.Configuration.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.EventSourcing.EventStore\EasyRent.EventSourcing.EventStore.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.Modules\EasyRent.Modules.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.NetCore\EasyRent.NetCore.csproj" />
+        <ProjectReference Include="..\EasyRent.Identity.Infrastructure\EasyRent.Identity.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="module.identity.dev.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="module.identity.host.json" />
+      <Content Include="module.identity.host.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+</Project>

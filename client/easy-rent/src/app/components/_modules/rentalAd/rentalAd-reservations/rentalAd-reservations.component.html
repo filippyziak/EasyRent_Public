@@ -1,0 +1,45 @@
+<ng-container
+  *ngFor="let index of reservations; let i = index; let even = even"
+>
+  <span class="row col-8 offset-2" *ngIf="even">
+    <div class="border col-5 border-1 border-primary m-2 p-2 hover">
+      <div class="col-12">
+        <div class="row space"></div>
+        <div class="row d-flex">
+          <h3 class="col-5">Arrival Date</h3>
+          <h3 class="col-5">{{ toDate(reservations[i].arrivalDate) }}</h3>
+          <h3 class="col-5">Departure Date</h3>
+          <h3 class="col-5">{{ toDate(reservations[i].departureDate) }}</h3>
+          <h3 class="col-5">Status</h3>
+          <h3 class="col-5">{{ reservations[i].state }}</h3>
+        </div>
+        <div class="row col-12">
+          <button *ngIf="!hasEmail(i)" class="col-10 offset-1 my-1 btn btn-primary" (click)="showDetails(reservations[i].tenantId, i)">Show details</button>
+          <h3 *ngIf="hasEmail(i)" class="col-10">Email: {{emailAddresses[i]}}</h3>
+          <button *ngIf="isOnGoing(reservations[i])" class="col-10 offset-1 my-1 btn btn-danger" (click)="cancelReservation(reservations[i].placeReservationId, i)">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <div
+      *ngIf="i - reservations.length < -1"
+      class="border col-5 border-1 border-primary m-2 p-2 hover"
+    >
+      <div class="col-12">
+        <div class="row space"></div>
+        <div class="row d-flex">
+          <h3 class="col-5">Arrival Date</h3>
+          <h3 class="col-5">{{ toDate(reservations[i + 1].arrivalDate) }}</h3>
+          <h3 class="col-5">Departure Date</h3>
+          <h3 class="col-5">{{ toDate(reservations[i + 1].departureDate) }}</h3>
+          <h3 class="col-5">Status</h3>
+          <h3 class="col-5">{{ reservations[i + 1].state }}</h3>
+        </div>
+        <div class="row col-12">
+          <button *ngIf="!hasEmail(i + 1)" class="col-10 offset-1 my-1 btn btn-primary" (click)="showDetails(reservations[i + 1].tenantId, i + 1)">Show details</button>
+          <h3 *ngIf="hasEmail(i + 1)" class="col-10">Email: {{emailAddresses[i + 1]}}</h3>
+          <button *ngIf="isOnGoing(reservations[i+1])" class="col-10 offset-1 my-1 btn btn-danger" (click)="cancelReservation(reservations[i + 1].placeReservationId, i + 1)">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </span>
+</ng-container>

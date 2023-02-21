@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.CQRS\EasyRent.CQRS.csproj" />
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.MessageBroker\EasyRent.MessageBroker.csproj" />
+      <ProjectReference Include="..\EasyRent.Management.Domain\EasyRent.Management.Domain.csproj" />
+      <ProjectReference Include="..\EasyRent.Management.Integrations\EasyRent.Management.Integrations.csproj" />
+      <ProjectReference Include="..\EasyRent.Management.ReadModels\EasyRent.Management.ReadModels.csproj" />
+    </ItemGroup>
+
+</Project>

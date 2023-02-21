@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\EasyRent.Configuration\EasyRent.Configuration.csproj" />
+      <ProjectReference Include="..\EasyRent.CQRS\EasyRent.CQRS.csproj" />
+      <ProjectReference Include="..\EasyRent.Infrastructure.Abstractions\EasyRent.Infrastructure.Abstractions.csproj" />
+      <ProjectReference Include="..\EasyRent.Shared\EasyRent.Shared.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.8" />
+        <PackageReference Include="NLog" Version="5.0.1" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    </ItemGroup>
+
+</Project>

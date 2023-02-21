@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.CQRS\EasyRent.CQRS.csproj" />
+      <ProjectReference Include="..\EasyRent.RentalAd.Domain\EasyRent.RentalAd.Domain.csproj" />
+      <ProjectReference Include="..\EasyRent.RentalAd.ReadModels\EasyRent.RentalAd.ReadModels.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
+    </ItemGroup>
+
+</Project>

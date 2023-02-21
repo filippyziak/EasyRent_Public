@@ -1,0 +1,10 @@
+{
+  "IdentityTokenConfiguration": {
+    "SecretKey": "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+    "TokenExpirationTimeInMinutes": 1440
+  },
+  "AccountDocumentConfiguration": {
+    "ConnectionString": "mongodb://admin:admin1234@database.mongodb.identity:27017",
+    "DatabaseName": "Identity"
+  }
+}

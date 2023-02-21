@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.EventSourcing\EasyRent.EventSourcing.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.Infrastructure\EasyRent.Infrastructure.csproj" />
+        <ProjectReference Include="..\..\Identity\EasyRent.Identity.Shared\EasyRent.Identity.Shared.csproj" />
+        <ProjectReference Include="..\..\RentalAd\EasyRent.RentalAd.Shared\EasyRent.RentalAd.Shared.csproj" />
+        <ProjectReference Include="..\EasyRent.Reservation.Core\EasyRent.Reservation.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="ncrontab" Version="3.3.1" />
+    </ItemGroup>
+    
+</Project>

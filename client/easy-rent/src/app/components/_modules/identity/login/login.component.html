@@ -1,0 +1,29 @@
+<div class="container my-5 py-5">
+  <div class="col">
+    <div class="row col-md-4 offset-md-4 justify-content-center">
+      <form #signInForm="ngForm" (ngSubmit)="signIn(signInForm.value.login, signInForm.value.password)">
+        <div>
+          <label class="col-sm-10 offset-sm-1"> Email Address:</label>
+          <input class="col-sm-10 offset-sm-1" type="text" ngModel name="login" email required #login="ngModel"
+          [ngClass]="{ 'is-invalid': signInForm.submitted && login.invalid }"/>
+          <div class="invalid-feedback col-sm-10 offset-sm-1" *ngIf="signInForm.submitted && login.invalid">
+            <p *ngIf="login.errors.required">Email is required</p>
+          </div>
+          <div class="invalid-feedback col-sm-10 offset-sm-1" *ngIf="signInForm.submitted && login.invalid">
+            <p *ngIf="login.errors.email">Must be email address</p>
+          </div>
+        </div>
+        <div>
+          <label class="col-sm-10 offset-sm-1"> Password:</label>
+          <input class="col-sm-10 offset-sm-1" type="password" ngModel name="password" required #password="ngModel"
+          [ngClass]="{ 'is-invalid': signInForm.submitted && password.invalid }"/>
+          <div class="invalid-feedback col-sm-10 offset-sm-1" *ngIf="signInForm.submitted && password.invalid">
+            <p *ngIf="password.errors.required">Password is required</p>
+          </div>
+        </div>
+          <button class="col-sm-4 offset-sm-4 btn btn-primary my-2" type="submit">Sign in!</button>
+      </form>
+      <a class="text-dark text-center my-2 custom-p" [routerLink]="['/register']">Register</a>
+    </div>
+  </div>
+</div>

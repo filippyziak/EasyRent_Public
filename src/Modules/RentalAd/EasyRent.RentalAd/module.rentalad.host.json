@@ -1,0 +1,6 @@
+﻿{
+  "RentalAdDocumentStoreConfiguration": {
+    "ConnectionString": "mongodb://admin:admin1234@database.mongodb.rentalad:27017",
+    "DatabaseName": "RentalAd"
+  }
+}

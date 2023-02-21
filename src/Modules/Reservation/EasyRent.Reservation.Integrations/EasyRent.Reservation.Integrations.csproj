@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+        <RootNamespace>EasyRent.Reservation.Events</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.EventSourcing\EasyRent.EventSourcing.csproj" />
+      <ProjectReference Include="..\..\..\Libraries\EasyRent.MessageBroker\EasyRent.MessageBroker.csproj" />
+    </ItemGroup>
+
+</Project>

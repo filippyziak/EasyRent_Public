@@ -1,0 +1,180 @@
+﻿version: '3.5'
+
+services:
+  easyrent.client:
+    container_name: easyrent.client
+    build: 
+      context: .
+      dockerfile: client/easy-rent/Dockerfile
+    restart: always
+    ports:
+      - 4200:80
+    networks:
+      - core
+
+  easyrent.api:
+    container_name: easyrent.api
+    build:
+      context: .
+      dockerfile: src/Entry/EasyRent.API/Dockerfile
+    restart: always
+    ports:
+      - 5000:80
+    environment:
+      - ASPNETCORE_ENVIRONMENT=host
+    volumes:
+      - easyrent_api_data:/src
+    networks:
+      - core
+    user: root
+    privileged: true
+    depends_on:
+      - eventstore
+      - messagebroker.rabbitmq
+      - database.mongodb.rentalad
+      - database.mongodb.identity
+      - database.mongodb.reservation
+      - database.mongodb.management
+
+  eventstore:
+    container_name: eventstore
+    image: eventstore/eventstore:release-5.0.8
+    restart: on-failure
+    ports:
+      - 2113:2113
+      - 1113:1113
+    environment:
+      - EVENTSTORE_CLUSTER_SIZE=1
+      - EVENTSTORE_RUN_PROJECTIONS=All
+      - EVENTSTORE_START_STANDARD_PROJECTIONS=true
+      - EVENTSTORE_EXT_TCP_PORT=1113
+      - EVENTSTORE_HTTP_PORT=2113
+      - EVENTSTORE_INSECURE=true
+      - EVENTSTORE_ENABLE_EXTERNAL_TCP=true
+      - EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP=true
+    volumes:
+      - type: volume
+        source: eventstore-volume-data
+        target: /var/lib/eventstore
+      - type: volume
+        source: eventstore-volume-logs
+        target: /var/log/eventstore
+    networks:
+      - core
+  
+  database.mongodb.checkpoint:
+    image: mongo:latest
+    container_name: database.mongodb.checkpoint
+    restart: always
+    ports:
+      - 6001:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin1234
+      - MONGO_INITDB_DATABASE=Checkpoint
+    volumes:
+      - mongodb_checkpoint_data:/data/db
+      - mongodb_checkpoint_config:/data/configdb
+      - ./_Scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - core
+  
+  database.mongodb.rentalad:
+    image: mongo:latest
+    container_name: database.mongodb.rentalad
+    restart: always
+    ports:
+      - 6002:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin1234
+      - MONGO_INITDB_DATABASE=RentalAd
+    volumes:
+      - mongodb_rentalAd_data:/data/db
+      - mongodb_rentalAd_config:/data/configdb
+      - ./Modules/RentalAd/EasyRent.RentalAd.Infrastructure/DocumentStore/_Scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - core
+  
+  database.mongodb.identity:
+    image: mongo:latest
+    container_name: database.mongodb.identity
+    restart: always
+    ports:
+      - 6003:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin1234
+      - MONGO_INITDB_DATABASE=Identity
+    volumes:
+      - mongodb_identity_data:/data/db
+      - mongodb_identity_config:/data/configdb
+      - ./Modules/Identity/EasyRent.Identity.Infrastructure/DocumentStore/_Scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - core
+  
+  database.mongodb.reservation:
+    image: mongo:latest
+    container_name: database.mongodb.reservation
+    restart: always
+    ports:
+      - 6004:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin1234
+      - MONGO_INITDB_DATABASE=Reservation
+    volumes:
+      - mongodb_reservation_data:/data/db
+      - mongodb_reservation_config:/data/configdb
+      - ./Modules/Reservation/EasyRent.Reservation.Infrastructure/DocumentStore/_Scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - core
+  
+  database.mongodb.management:
+    image: mongo:latest
+    container_name: database.mongodb.management
+    restart: always
+    ports:
+      - 6005:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin1234
+      - MONGO_INITDB_DATABASE=Management
+    volumes:
+      - mongodb_management_data:/data/db
+      - mongodb_management_config:/data/configdb
+      - ./Modules/Management/EasyRent.Management.Infrastructure/DocumentStore/_Scripts:/docker-entrypoint-initdb.d:ro
+    networks:
+      - core
+
+  messagebroker.rabbitmq:
+    container_name: messagebroker.rabbitmq
+    image: rabbitmq:3.10.0-rc.6-management-alpine
+    restart: always
+    ports:
+      - 6050:5672
+      - 3050:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - core
+
+volumes:
+  easyrent_api_data:
+  eventstore-volume-data:
+  eventstore-volume-logs:
+  mongodb_checkpoint_data:
+  mongodb_checkpoint_config:
+  mongodb_rentalAd_data:
+  mongodb_rentalAd_config:
+  mongodb_reservation_data:
+  mongodb_reservation_config:
+  mongodb_management_data:
+  mongodb_management_config:
+  mongodb_identity_data:
+  mongodb_identity_config:
+  rabbitmq_data:
+
+networks:
+  core:
+    driver: bridge

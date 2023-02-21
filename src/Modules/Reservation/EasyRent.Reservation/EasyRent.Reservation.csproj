@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.Configuration\EasyRent.Configuration.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.EventSourcing.EventStore\EasyRent.EventSourcing.EventStore.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.Modules\EasyRent.Modules.csproj" />
+        <ProjectReference Include="..\..\..\Libraries\EasyRent.NetCore\EasyRent.NetCore.csproj" />
+        <ProjectReference Include="..\EasyRent.Reservation.Infrastructure\EasyRent.Reservation.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="module.reservation.dev.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="module.reservation.host.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+    
+</Project>

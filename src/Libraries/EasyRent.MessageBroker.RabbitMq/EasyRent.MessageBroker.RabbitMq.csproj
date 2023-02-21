@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>disable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="11.0.0" />
+        <PackageReference Include="MediatR" Version="10.0.1" />
+        <PackageReference Include="RabbitMQ.Client" Version="6.4.0" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <ProjectReference Include="..\EasyRent.Infrastructure.Abstractions\EasyRent.Infrastructure.Abstractions.csproj" />
+        <ProjectReference Include="..\EasyRent.MessageBroker\EasyRent.MessageBroker.csproj" />
+    </ItemGroup>
+
+</Project>

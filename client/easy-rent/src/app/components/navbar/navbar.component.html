@@ -1,0 +1,59 @@
+<nav class="py-3 navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="container">
+    <a class="navbar-brand" href="#">EasyRent</a>
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a
+          class="nav-link"
+          *ngIf="identityService.isLoggedIn() && identityService.isPlaceOwner()"
+          href="rentalAd/form"
+          >Add Rental<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item active">
+        <a
+          class="nav-link"
+          *ngIf="identityService.isLoggedIn() && identityService.isPlaceOwner()"
+          href="owner"
+          >My Ads<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" *ngIf="identityService.isLoggedIn()" href="profile"
+          >Profile<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li
+        class="nav-item active"
+        *ngIf="identityService.isLoggedIn() && identityService.isModerator()"
+      >
+        <a class="nav-link" href="management/profiles"
+          >Management<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li
+        *ngIf="identityService.isLoggedIn() && identityService.isTenant()"
+        class="nav-item active"
+      >
+        <a class="nav-link" href="tenant"
+          >Reservations<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li *ngIf="identityService.isLoggedIn()" class="nav-item active">
+        <a class="nav-link" (click)="identityService.logout()" href="#"
+          >Logout <span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li *ngIf="!identityService.isLoggedIn()" class="nav-item active">
+        <a class="nav-link" href="register"
+          >Register<span class="sr-only">(current)</span></a
+        >
+      </li>
+      <li *ngIf="!identityService.isLoggedIn()" class="nav-item active">
+        <a class="nav-link" href="login"
+          >Login<span class="sr-only">(current)</span></a
+        >
+      </li>
+    </ul>
+  </div>
+</nav>

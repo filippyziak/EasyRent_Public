@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="space"></div>
+  <div class="row col-8 offset-2 text-center">
+    <h1 class="text-decoration-underline">
+      {{ this.rentalAd.title }}
+    </h1>
+  </div>
+  <div class="space"></div>
+  <div class="offset-lg-1 my-2 row">
+    <div
+      class="offset-md-3 offset-lg-0 col-lg-2 col-md-6 details-panel border rounded space-info"
+    >
+      <div class="py-3 p-2 text-primary text-wrap">
+        <p>Coutry: {{ this.rentalAd.placeAddress.country }}</p>
+        <p>City: {{ this.rentalAd.placeAddress.city }}</p>
+        <p>Street: {{ this.rentalAd.placeAddress.street }}</p>
+        <p>Price: {{ this.rentalAd.pricePerDay }} $</p>
+        <p>Contact: {{ this.rentalAd.placeOwner.emailAddress }}</p>
+        <button
+          class="btn btn-primary btn-small"
+          *ngIf="isOwner() && !isArchived()"
+          (click)="router.navigate(['rentalAd/edit/', rentalAd.rentalAdId])"
+        >
+          Edit Ad
+        </button>
+      </div>
+    </div>
+    <div class="offset-lg-1 col-lg-8 py-md-2">
+      <gallery
+        class="row rounded p-2 bg-secondary border border-color border-3"
+        [items]="images"
+        thumbPosition="right"
+      ></gallery>
+      <p class="row py-md-2 rounded border border-1 description p-2 my-2">
+        {{ this.rentalAd.description }}
+      </p>
+      <div *ngIf="!isArchived()" class="row">
+        <div class="col-lg-2 offset-lg-1 offset-md-3 col-md-8">
+          <label>Arrival Date</label>
+          <mat-form-field appearance="outline" [formGroup]="arrivalDate">
+            <input
+              matInput
+              maxlength="0"
+              formControlName="arrivalDate"
+              placeholder="Arrival Date"
+              [min]="minDate"
+              [matDatepickerFilter]="myFilter"
+              [matDatepicker]="releasedAtPicker"
+              (click)="releasedAtPicker.open()"
+            />
+            <mat-datepicker-toggle matSuffix [for]="releasedAtPicker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #releasedAtPicker [touchUi]="true">
+            </mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="offset-lg-2 col-lg-2 offset-md-3 col-md-8">
+          <label>Departure Date</label>
+          <mat-form-field appearance="outline" [formGroup]="departureDate">
+            <input
+              matInput
+              maxlength="0"
+              formControlName="departureDate"
+              placeholder="Departure Date"
+              [min]="minDate"
+              [matDatepickerFilter]="myFilter"
+              [matDatepicker]="releasedAtPicker1"
+              (click)="releasedAtPicker1.open()"
+            />
+            <mat-datepicker-toggle matSuffix [for]="releasedAtPicker1">
+            </mat-datepicker-toggle>
+            <mat-datepicker #releasedAtPicker1 [touchUi]="true">
+            </mat-datepicker>
+          </mat-form-field>
+
+          <div class="offset-lg-2 col-lg-2 offset-md-4 col-md-8">
+            <button
+              *ngIf="isTenant()"
+              [disabled]="departureDateProp.invalid && arrivalDateProp.invalid"
+              type="button"
+              class="btn btn-primary"
+              (click)="reserve()"
+            >
+              Reserve
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div *ngIf="isOwner()">
+        <div class="row col-3 offset-4">
+          <h2>Reservations:</h2>
+        </div>
+        <app-rentalAd-reservations
+          [reservations]="placeReservations"
+        ></app-rentalAd-reservations>
+      </div>
+    </div>
+    <div class="row col-3 offset-4">
+      <h2>Reviews:</h2>
+    </div>
+    <ng-container *ngFor="let reservation of reviewedPlaceReservations">
+      <div class="row col-6 offset-4 border border-1 my-2 p-1">
+        <h3>Score: {{ reservation.reviewScore }}</h3>
+        <span class="col-8">{{ reservation.reviewDescription }}</span>
+      </div>
+    </ng-container>
+  </div>
+</div>
